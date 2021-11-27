@@ -1,7 +1,5 @@
-import jimp from 'jimp';
 import ws from 'ws';
 import fs from 'fs';
-import { createWorker } from 'tesseract.js';
 import { NstrumentaClient } from 'nstrumenta'
 import { readFile } from 'fs/promises';
 
