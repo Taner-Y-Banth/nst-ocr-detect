@@ -4,7 +4,7 @@ import './App.css';
 import { NstrumentaClient } from 'nstrumenta';
 
 function App() {
-  const [image, setImage] = useState<string>()
+  const [imageSrc, setImageSrc] = useState<string>()
 
   useEffect(() => {
     console.log('app')
@@ -12,7 +12,10 @@ function App() {
     nstClient.addListener("open", () => {
       console.log('nst client open')
       nstClient.subscribe('ocr', (message) => {
-        setImage('`message ${Date.now()}`')
+        // const blob = new Blob(message.data, { type: 'image/jpeg' });
+        const b64encoded = btoa(String.fromCharCode.apply(null, message.data));
+        const src = 'data:image/jpeg;base64,' + b64encoded;
+        setImageSrc(src);
       })
     })
     nstClient.init()
@@ -21,9 +24,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img id="image" src={imageSrc ? imageSrc : logo} className="App-logo" alt="logo" />
         <p>
-          {image}
+          grapefruit?
         </p>
         <a
           className="App-link"

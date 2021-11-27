@@ -8,14 +8,14 @@ const completed = []
 
 fs.watch('./images', async (eventType, filename) => {
   console.log(!completed.includes(filename) && `event type is: ${eventType}`);
-  if (eventType == 'change') {
+  if (eventType == 'change' && !completed.includes(filename)) {
     completed.push(filename)
     console.log(`filename provided: ${filename}`);
+    //TODO read file, get blob, send 
 
-   //TODO read file, get blob, send 
-    nstrumenta.send('ocr', text);
-    fs.rm('./eng.traineddata', () => { });
-    fs.rm(`./images/${filename}`, () => { });
+    const imageFile = await readFile(`./images/${filename}`);
+    console.log(imageFile);
+    nstrumenta.send('ocr', imageFile);
   } else {
     console.log('filename not provided');
   }
