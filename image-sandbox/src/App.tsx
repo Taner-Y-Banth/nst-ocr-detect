@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { NstrumentaClient } from 'nstrumenta';
+import { createImportSpecifier } from 'typescript';
 
 function App() {
   const [imageSrc, setImageSrc] = useState<string>()
+  const [text, setText] = useState<string>()
 
   useEffect(() => {
     console.log('app')
@@ -12,10 +14,14 @@ function App() {
     nstClient.addListener("open", () => {
       console.log('nst client open')
       nstClient.subscribe('ocr', (message) => {
-        // const blob = new Blob(message.data, { type: 'image/jpeg' });
-        const b64encoded = btoa(String.fromCharCode.apply(null, message.data));
-        const src = 'data:image/jpeg;base64,' + b64encoded;
+        const blob = new Blob([message], { type: 'image/png' });
+        const src = URL.createObjectURL(blob)
+        console.log(src);
         setImageSrc(src);
+      })
+      nstClient.subscribe('images', (message) => {
+        console.log(message);
+        setText(message);
       })
     })
     nstClient.init()
@@ -26,16 +32,8 @@ function App() {
       <header className="App-header">
         <img id="image" src={imageSrc ? imageSrc : logo} className="App-logo" alt="logo" />
         <p>
-          grapefruit?
+          {text}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );

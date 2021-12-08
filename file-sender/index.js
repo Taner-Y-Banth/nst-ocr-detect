@@ -13,7 +13,9 @@ fs.watch('./images', async (eventType, filename) => {
     console.log(`filename provided: ${filename}`);
     const imageFile = await readFile(`./images/${filename}`);
     console.log(imageFile);
-    nstrumenta.send('ocr', imageFile);
+
+    nstrumenta.sendBuffer('ocr', buff);
+
   } else {
     console.log('filename not provided');
   }

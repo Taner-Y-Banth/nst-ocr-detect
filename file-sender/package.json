@@ -1,7 +1,7 @@
 {
   "type": "module",
   "dependencies": {
-    "nstrumenta": "^1.0.37"
+    "nstrumenta": "^1.0.39"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

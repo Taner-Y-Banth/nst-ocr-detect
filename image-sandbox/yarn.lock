@@ -8010,10 +8010,10 @@
   dependencies:
     "path-key" "^3.0.0"
 
-"nstrumenta@^1.0.37":
-  "integrity" "sha512-AVGsXyMvJGgwY8s+U3nW/IOob0FTPQnLWVd6R8GmCaxsRk78pfN9Yawq7EdVFrOH64zwb+DqEeeNj1v6fGCsCQ=="
-  "resolved" "https://registry.npmjs.org/nstrumenta/-/nstrumenta-1.0.37.tgz"
-  "version" "1.0.37"
+"nstrumenta@^1.0.39":
+  "integrity" "sha512-etdeZtmyqv479gGnRV4pxs99n0Iv0lG/F9wU83i+Gs3fmHvW72i0EWAEBL3KGKdwqZ8tWEHbVO7fMtDnYFZwTQ=="
+  "resolved" "https://registry.npmjs.org/nstrumenta/-/nstrumenta-1.0.39.tgz"
+  "version" "1.0.39"
   dependencies:
     "axios" "^0.21.4"
     "bytebuffer" "^5.0.1"
