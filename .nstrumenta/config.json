@@ -1,0 +1,10 @@
+{
+    "modules": [
+      {
+        "type": "sandbox",
+        "name": "ocr-sandbox",
+        "folder": "image-sandbox/build",
+        "entry": "index.html"
+      }
+    ]
+  }
