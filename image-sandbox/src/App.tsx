@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { NstrumentaClient } from 'nstrumenta';
-import { createImportSpecifier } from 'typescript';
 
 function App() {
   const [imageSrc, setImageSrc] = useState<string>()

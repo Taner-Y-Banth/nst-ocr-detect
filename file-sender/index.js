@@ -11,8 +11,7 @@ fs.watch('./images', async (eventType, filename) => {
   if (eventType == 'change' && !completed.includes(filename)) {
     completed.push(filename);
     console.log(`filename provided: ${filename}`);
-    const imageFile = await readFile(`./images/${filename}`);
-    console.log(imageFile);
+    const buff = await readFile(`./images/${filename}`);
 
     nstrumenta.sendBuffer('ocr', buff);
 
