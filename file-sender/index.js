@@ -22,7 +22,7 @@ fs.watch('./images', async (eventType, filename) => {
 });
 
 nstrumenta.addListener("open", () => {
-  console.log("websocket successfully opened");
+  console.log("websocket opened successfully");
 });
 
 console.log("nstrumenta init");
