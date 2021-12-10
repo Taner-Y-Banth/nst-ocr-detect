@@ -8,8 +8,17 @@ function App() {
   const [text, setText] = useState<string>()
 
   useEffect(() => {
-    console.log('app')
-    const nstClient = new NstrumentaClient({ apiKey: '', projectId: '', wsUrl: 'ws://localhost:8088' });
+
+      const wsUrlParam = new URLSearchParams(window.location.search).get("wsUrl");
+  
+      const wsUrl = wsUrlParam ? wsUrlParam : "ws://localhost:8088";
+  
+      const nstClient = new NstrumentaClient({
+        apiKey: "",
+        projectId: "",
+        wsUrl,
+      });
+  
     nstClient.addListener("open", () => {
       console.log('nst client open')
       nstClient.subscribe('ocr', (message) => {

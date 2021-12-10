@@ -2,8 +2,17 @@ import ws from 'ws';
 import fs from 'fs';
 import { NstrumentaClient } from 'nstrumenta';
 import { readFile } from 'fs/promises';
+import minimist from "minimist";
 
-const nstrumenta = new NstrumentaClient({ hostUrl: 'ws://localhost:8088' });
+const argv = minimist(process.argv.slice(2));
+const wsUrl = argv.wsUrl;
+
+const nstClient = new NstrumentaClient({
+  apiKey: "",
+  projectId: "",
+  wsUrl,
+});
+
 const completed = [];
 
 fs.watch('./images', async (eventType, filename) => {
