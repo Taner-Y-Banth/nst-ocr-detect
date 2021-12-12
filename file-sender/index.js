@@ -22,17 +22,17 @@ fs.watch('./images', async (eventType, filename) => {
     console.log(`filename provided: ${filename}`);
     const buff = await readFile(`./images/${filename}`);
 
-    nstrumenta.sendBuffer('ocr', buff);
+    nstClient.sendBuffer('ocr', buff);
 
   } else {
     console.log('filename not provided');
   }
 });
 
-nstrumenta.addListener("open", () => {
+nstClient.addListener("open", () => {
   console.log("websocket opened successfully");
 });
 
 console.log("nstrumenta init");
 
-nstrumenta.init(ws);
+nstClient.init(ws);
