@@ -12,7 +12,7 @@ function App() {
 
     const wsUrlParam = new URLSearchParams(window.location.search).get("wsUrl");
 
-    const wsUrl = wsUrlParam ? wsUrlParam : "ws://localhost:8088";
+    const wsUrl = wsUrlParam ? wsUrlParam : window.location.origin.replace('http', 'ws');
 
     const nstClient = new NstrumentaClient({
       apiKey: "",
