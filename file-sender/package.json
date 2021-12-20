@@ -1,6 +1,7 @@
 {
   "type": "module",
   "dependencies": {
+    "jimp": "^0.16.1",
     "minimist": "^1.2.5",
     "nstrumenta": "^1.0.39"
   },

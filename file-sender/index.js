@@ -1,8 +1,9 @@
 import ws from 'ws';
 import fs from 'fs';
+import minimist from "minimist";
+import jimp from "jimp";
 import { NstrumentaClient } from 'nstrumenta';
 import { readFile } from 'fs/promises';
-import minimist from "minimist";
 
 const argv = minimist(process.argv.slice(2));
 const wsUrl = argv.wsUrl;
@@ -23,6 +24,10 @@ fs.watch('./images', async (eventType, filename) => {
     const buff = await readFile(`./images/${filename}`);
 
     nstClient.sendBuffer('ocr', buff);
+
+    const image = await jimp.read(buff);
+    const outImage = await image.invert().getBufferAsync(jimp.MIME_PNG);
+    nstClient.sendBuffer('jimp', outImage);
 
   } else {
     console.log('filename not provided');
