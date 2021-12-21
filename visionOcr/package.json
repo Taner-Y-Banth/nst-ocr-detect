@@ -1,0 +1,11 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@google-cloud/vision": "^2.4.1",
+    "jimp": "^0.16.1",
+    "nstrumenta": "^1.0.39"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

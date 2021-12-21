@@ -1,0 +1,11 @@
+{
+  "type": "module",
+  "dependencies": {
+    "jimp": "^0.16.1",
+    "nstrumenta": "^1.0.39",
+    "tesseract.js": "^2.1.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

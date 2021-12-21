@@ -6,7 +6,7 @@ import { NstrumentaClient } from 'nstrumenta';
 import { readFile } from 'fs/promises';
 
 const argv = minimist(process.argv.slice(2));
-const wsUrl = argv.wsUrl;
+const wsUrl = 'wss://' + argv.wsUrl;
 
 const nstClient = new NstrumentaClient({
   apiKey: "",

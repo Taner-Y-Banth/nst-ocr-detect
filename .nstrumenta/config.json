@@ -1,10 +1,16 @@
 {
-    "modules": [
-      {
-        "type": "sandbox",
-        "name": "ocr-sandbox",
-        "folder": "image-sandbox/build",
-        "entry": "index.html"
-      }
-    ]
-  }
+  "modules": [
+    {
+      "type": "sandbox",
+      "name": "ocr-sandbox",
+      "folder": "image-sandbox/build",
+      "entry": "index.html"
+    },
+    {
+      "type": "nodejs",
+      "name": "file-sender",
+      "folder": "file-sender",
+      "entry": "index.js"
+    }
+  ]
+}
