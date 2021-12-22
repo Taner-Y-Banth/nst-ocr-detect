@@ -5,8 +5,8 @@ import { NstrumentaClient } from 'nstrumenta';
 function App() {
   const [imageSrc, setImageSrc] = useState<string>()
   const [jimpSrc, setJimpSrc] = useState<string>()
-  const [text, setText] = useState<string>()
-  const [jimpText, setJimpText] = useState<string>()
+  const [imageText, setImageText] = useState<string>()
+  const [processedImageText, setProcessedImageText] = useState<string>()
 
   useEffect(() => {
 
@@ -29,8 +29,8 @@ function App() {
         const src = URL.createObjectURL(blob);
         console.log(src);
         setImageSrc(src);
-        setJimpText('');
-        setText('');
+        setProcessedImageText('');
+        setImageText('');
       })
       nstClient.subscribe('postprocessing', (grayscale) => {
         const jimp = new Blob([grayscale], { type: 'image/png' });
@@ -40,11 +40,11 @@ function App() {
       })
       nstClient.subscribe('imageText', (message) => {
         console.log(message);
-        setText('Without Processing => ' + message);
+        setImageText('Without Processing => ' + message);
       })
       nstClient.subscribe('processedImageText', (message) => {
         console.log(message);
-        setJimpText('With Processing => ' + message);
+        setProcessedImageText('With Processing => ' + message);
       })
     })
     nstClient.init()
@@ -56,10 +56,10 @@ function App() {
         <img id="image" src={imageSrc ? imageSrc : 'https://nstrumenta.gallerycdn.vsassets.io/extensions/nstrumenta/nstrumenta-vscode/1.0.3/1633666110849/Microsoft.VisualStudio.Services.Icons.Default'} className="App-logo" alt="logo" />
         <img id="image" src={jimpSrc ? jimpSrc : 'https://nstrumenta.gallerycdn.vsassets.io/extensions/nstrumenta/nstrumenta-vscode/1.0.3/1633666110849/Microsoft.VisualStudio.Services.Icons.Default'} className="App-logo" alt="logo" />
         <p>
-          {text}
+          {imageText}
         </p>
         <p>
-          {jimpText}
+          {processedImageText}
         </p>
       </header>
     </div>

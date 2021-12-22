@@ -5,7 +5,7 @@ import { NstrumentaClient } from 'nstrumenta'
 import vision from '@google-cloud/vision';
 
 const argv = minimist(process.argv.slice(2));
-const wsUrl = 'wss://' + argv.wsUrl;
+const wsUrl = 'wss://' + argv.wsUrl + '.vm.nstrumenta.com';
 
 const nstClient = new NstrumentaClient({
   apiKey: "",
