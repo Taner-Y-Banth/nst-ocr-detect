@@ -23,11 +23,11 @@ fs.watch('./images', async (eventType, filename) => {
     console.log(`filename provided: ${filename}`);
     const buff = await readFile(`./images/${filename}`);
 
-    nstClient.sendBuffer('ocr', buff);
+    nstClient.sendBuffer('preprocessing', buff);
 
     const image = await jimp.read(buff);
     const outImage = await image.invert().getBufferAsync(jimp.MIME_PNG);
-    nstClient.sendBuffer('jimp', outImage);
+    nstClient.sendBuffer('postprocessing', outImage);
 
   } else {
     console.log('filename not provided');

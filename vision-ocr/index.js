@@ -1,7 +1,6 @@
 import ws from 'ws';
 import fs from 'fs';
 import minimist from 'minimist';
-import { createWorker } from 'tesseract.js';
 import { NstrumentaClient } from 'nstrumenta'
 import vision from '@google-cloud/vision';
 
@@ -19,19 +18,20 @@ const client = new vision.ImageAnnotatorClient();
 nstClient.addListener("open", () => {
   console.log("websocket successfully opened")
 
-  nstClient.subscribe('jimp', async (message) => {
+  nstClient.subscribe('postprocessing', async (message) => {
 
     const [result] = await client.textDetection(message);
     const detections = result.textAnnotations;
-    detections.forEach(text => console.log(text));
+    detections.forEach(text => console.log(text.description));
+    nstClient.send('imageText', text.description)
 
   }),
 
-    nstClient.subscribe('ocr', async (message) => {
+    nstClient.subscribe('preprocessing', async (message) => {
 
       const [result] = await client.textDetection(message);
       const detections = result.textAnnotations;
-      detections.forEach(text => console.log(text));
+      detections.forEach(text => nstClient.send('processedImageText', text));
 
     });
 

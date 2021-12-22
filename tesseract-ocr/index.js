@@ -16,7 +16,7 @@ const nstClient = new NstrumentaClient({
 nstClient.addListener("open", () => {
   console.log("websocket successfully opened")
 
-  nstClient.subscribe('jimp', async (message) => {
+  nstClient.subscribe('postprocessing', async (message) => {
 
     const worker = createWorker({
       logger: m => console.log(m)
@@ -28,11 +28,11 @@ nstClient.addListener("open", () => {
     const { data: { text } } = await worker.recognize(message);
     await worker.terminate();
     console.log(text);
-    nstClient.send('jimpText', text);
+    nstClient.send('processedImageText', text);
     fs.rm('./eng.traineddata', () => { });
   }),
 
-    nstClient.subscribe('ocr', async (message) => {
+    nstClient.subscribe('preprocessing', async (message) => {
 
       const worker = createWorker({
         logger: m => console.log(m)
@@ -44,7 +44,7 @@ nstClient.addListener("open", () => {
       const { data: { text } } = await worker.recognize(message);
       await worker.terminate();
       console.log(text);
-      nstClient.send('text', text);
+      nstClient.send('imageText', text);
       fs.rm('./eng.traineddata', () => { });
     });
 

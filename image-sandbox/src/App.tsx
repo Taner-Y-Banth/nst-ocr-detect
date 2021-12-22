@@ -22,7 +22,7 @@ function App() {
 
     nstClient.addListener("open", () => {
       console.log('nst client open')
-      nstClient.subscribe('ocr', (message) => {
+      nstClient.subscribe('preprocessing', (message) => {
         setImageSrc('');
         setJimpSrc('');
         const blob = new Blob([message], { type: 'image/png' });
@@ -32,19 +32,19 @@ function App() {
         setJimpText('');
         setText('');
       })
-      nstClient.subscribe('jimp', (grayscale) => {
+      nstClient.subscribe('postprocessing', (grayscale) => {
         const jimp = new Blob([grayscale], { type: 'image/png' });
         const src1 = URL.createObjectURL(jimp);
         console.log(src1);
         setJimpSrc(src1);
       })
-      nstClient.subscribe('text', (message) => {
+      nstClient.subscribe('imageText', (message) => {
         console.log(message);
-        setText('Without Jimp => ' + message);
+        setText('Without Processing => ' + message);
       })
-      nstClient.subscribe('jimpText', (message) => {
+      nstClient.subscribe('processedImageText', (message) => {
         console.log(message);
-        setJimpText('With Jimp => ' + message);
+        setJimpText('With Processing => ' + message);
       })
     })
     nstClient.init()
