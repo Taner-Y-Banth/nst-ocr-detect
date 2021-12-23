@@ -37,8 +37,8 @@ function App() {
         setTesseractText('');
       })
       nstClient.subscribe('postprocessing', (grayscale) => {
-        const jimp = new Blob([grayscale], { type: 'image/png' });
-        const src1 = URL.createObjectURL(jimp);
+        const blob = new Blob([grayscale], { type: 'image/png' });
+        const src1 = URL.createObjectURL(blob);
         console.log(src1);
         setProcessedImageSrc(src1);
       })
@@ -69,14 +69,14 @@ function App() {
           <table>
             <thead>
               <tr>
-                <th colSpan={2}>Tesseract OCR</th>
-                <th colSpan={2}>Vision OCR</th>
+                <th colSpan={2}> <img id="image" src={imageSrc ? imageSrc : 'https://nstrumenta.gallerycdn.vsassets.io/extensions/nstrumenta/nstrumenta-vscode/1.0.3/1633666110849/Microsoft.VisualStudio.Services.Icons.Default'} className="App-logo" alt="logo" /> </th>
+                <th colSpan={2}> <img id="image" src={processedImageSrc ? processedImageSrc : 'https://nstrumenta.gallerycdn.vsassets.io/extensions/nstrumenta/nstrumenta-vscode/1.0.3/1633666110849/Microsoft.VisualStudio.Services.Icons.Default'} className="App-logo" alt="logo" /> </th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th colSpan={2}> <img id="image" src={imageSrc ? imageSrc : 'https://nstrumenta.gallerycdn.vsassets.io/extensions/nstrumenta/nstrumenta-vscode/1.0.3/1633666110849/Microsoft.VisualStudio.Services.Icons.Default'} className="App-logo" alt="logo" /> </th>
-                <th colSpan={2}> <img id="image" src={processedImageSrc ? processedImageSrc : 'https://nstrumenta.gallerycdn.vsassets.io/extensions/nstrumenta/nstrumenta-vscode/1.0.3/1633666110849/Microsoft.VisualStudio.Services.Icons.Default'} className="App-logo" alt="logo" /> </th>
+                <th colSpan={2}>Tesseract OCR</th>
+                <th colSpan={2}>Vision OCR</th>
                </tr>
               <tr>
                 <td>{tesseractText ? tesseractText : 'Please send an image from the Tesseract OCR app to see the text output'}</td>
