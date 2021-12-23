@@ -1,11 +1,11 @@
-import ws from 'ws';
 import fs from 'fs';
 import minimist from 'minimist';
+import { NstrumentaClient } from 'nstrumenta';
 import { createWorker } from 'tesseract.js';
-import { NstrumentaClient } from 'nstrumenta'
+import ws from 'ws';
 
 const argv = minimist(process.argv.slice(2));
-const wsUrl = 'wss://' + argv.wsUrl + '.vm.nstrumenta.com';
+const wsUrl = argv.wsUrl;
 
 const nstClient = new NstrumentaClient({
   apiKey: "",
