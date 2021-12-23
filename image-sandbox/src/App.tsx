@@ -60,35 +60,36 @@ function App() {
       })
     })
 
-      nstClient.init()
-    }, [])
+    nstClient.init()
+  }, [])
 
-    return (
-      <div className="App">
-        <header className="App-header">
-          <table>
-            <thead>
-              <tr>
-                <th colSpan={2}> <img id="image" src={imageSrc ? imageSrc : 'https://nstrumenta.gallerycdn.vsassets.io/extensions/nstrumenta/nstrumenta-vscode/1.0.3/1633666110849/Microsoft.VisualStudio.Services.Icons.Default'} className="App-logo" alt="logo" /> </th>
-                <th colSpan={2}> <img id="image" src={processedImageSrc ? processedImageSrc : 'https://nstrumenta.gallerycdn.vsassets.io/extensions/nstrumenta/nstrumenta-vscode/1.0.3/1633666110849/Microsoft.VisualStudio.Services.Icons.Default'} className="App-logo" alt="logo" /> </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th colSpan={2}>Tesseract OCR</th>
-                <th colSpan={2}>Vision OCR</th>
-               </tr>
-              <tr>
-                <td>{tesseractText ? tesseractText : 'Please send an image from the Tesseract OCR app to see the text output'}</td>
-                <td>{processedTesseractText ? processedTesseractText : 'Waiting for an image'}</td>
-                <td>{visionText ? visionText : 'Please send an image from the Vision OCR app to see the text output'}</td>
-                <td>{processedVisionText ? processedVisionText : 'Waiting for an image'}</td>
-              </tr>
-            </tbody>
-          </table>
-        </header>
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <header className="App-header">
+        <table>
+          <thead>
+          <tr> <th colSpan={4}> OCR Nstrumenta App </th> </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th colSpan={2}> <img id="image" src={imageSrc ? imageSrc : 'https://nstrumenta.gallerycdn.vsassets.io/extensions/nstrumenta/nstrumenta-vscode/1.0.3/1633666110849/Microsoft.VisualStudio.Services.Icons.Default'} className="App-logo" alt="logo" /> </th>
+              <th colSpan={2}> <img id="image" src={processedImageSrc ? processedImageSrc : 'https://nstrumenta.gallerycdn.vsassets.io/extensions/nstrumenta/nstrumenta-vscode/1.0.3/1633666110849/Microsoft.VisualStudio.Services.Icons.Default'} className="App-logo" alt="logo" /> </th>
+            </tr>
+            <tr>
+              <th colSpan={2}>Tesseract OCR</th>
+              <th colSpan={2}>Vision OCR</th>
+            </tr>
+            <tr>
+              <td>{tesseractText ? tesseractText : 'Please send an image from the Tesseract OCR app to see the text output'}</td>
+              <td>{processedTesseractText ? processedTesseractText : 'Waiting for an image'}</td>
+              <td>{visionText ? visionText : 'Please send an image from the Vision OCR app to see the text output'}</td>
+              <td>{processedVisionText ? processedVisionText : 'Waiting for an image'}</td>
+            </tr>
+          </tbody>
+        </table>
+      </header>
+    </div>
+  );
+}
 
 export default App;
