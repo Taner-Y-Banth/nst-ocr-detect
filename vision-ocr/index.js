@@ -1,5 +1,4 @@
 import ws from 'ws';
-import fs from 'fs';
 import minimist from 'minimist';
 import { NstrumentaClient } from 'nstrumenta'
 import vision from '@google-cloud/vision';
@@ -21,17 +20,16 @@ nstClient.addListener("open", () => {
   nstClient.subscribe('postprocessing', async (message) => {
 
     const [result] = await client.textDetection(message);
-    const detections = result.textAnnotations;
-    detections.forEach(text => console.log(text.description));
-    nstClient.send('imageText', text.description)
+    const text = result.textAnnotations[0].description;
+    nstClient.send('processedVisionText', text);
 
   }),
 
     nstClient.subscribe('preprocessing', async (message) => {
 
       const [result] = await client.textDetection(message);
-      const detections = result.textAnnotations;
-      detections.forEach(text => nstClient.send('processedImageText', text));
+      const text = result.textAnnotations[0].description;
+      nstClient.send('visionText', text);
 
     });
 

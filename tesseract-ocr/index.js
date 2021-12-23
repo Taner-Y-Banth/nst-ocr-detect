@@ -28,7 +28,7 @@ nstClient.addListener("open", () => {
     const { data: { text } } = await worker.recognize(message);
     await worker.terminate();
     console.log(text);
-    nstClient.send('processedImageText', text);
+    nstClient.send('processedTesseractText', text);
     fs.rm('./eng.traineddata', () => { });
   }),
 
@@ -44,7 +44,7 @@ nstClient.addListener("open", () => {
       const { data: { text } } = await worker.recognize(message);
       await worker.terminate();
       console.log(text);
-      nstClient.send('imageText', text);
+      nstClient.send('tesseractText', text);
       fs.rm('./eng.traineddata', () => { });
     });
 

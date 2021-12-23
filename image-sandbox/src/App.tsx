@@ -4,9 +4,11 @@ import { NstrumentaClient } from 'nstrumenta';
 
 function App() {
   const [imageSrc, setImageSrc] = useState<string>()
-  const [jimpSrc, setJimpSrc] = useState<string>()
-  const [imageText, setImageText] = useState<string>()
-  const [processedImageText, setProcessedImageText] = useState<string>()
+  const [processedImageSrc, setProcessedImageSrc] = useState<string>()
+  const [visionText, setVisionText] = useState<string>()
+  const [processedVisionText, setProcessedVisionText] = useState<string>()
+  const [tesseractText, setTesseractText] = useState<string>()
+  const [processedTesseractText, setProcessedTesseractText] = useState<string>()
 
   useEffect(() => {
 
@@ -24,46 +26,69 @@ function App() {
       console.log('nst client open')
       nstClient.subscribe('preprocessing', (message) => {
         setImageSrc('');
-        setJimpSrc('');
+        setProcessedImageSrc('');
         const blob = new Blob([message], { type: 'image/png' });
         const src = URL.createObjectURL(blob);
         console.log(src);
         setImageSrc(src);
-        setProcessedImageText('');
-        setImageText('');
+        setProcessedVisionText('');
+        setVisionText('');
+        setProcessedTesseractText('');
+        setTesseractText('');
       })
       nstClient.subscribe('postprocessing', (grayscale) => {
         const jimp = new Blob([grayscale], { type: 'image/png' });
         const src1 = URL.createObjectURL(jimp);
         console.log(src1);
-        setJimpSrc(src1);
+        setProcessedImageSrc(src1);
       })
-      nstClient.subscribe('imageText', (message) => {
+      nstClient.subscribe('visionText', (message) => {
         console.log(message);
-        setImageText('Without Processing => ' + message);
+        setVisionText('Without autograyscale => ' + message);
       })
-      nstClient.subscribe('processedImageText', (message) => {
+      nstClient.subscribe('processedVisionText', (message) => {
         console.log(message);
-        setProcessedImageText('With Processing => ' + message);
+        setProcessedVisionText('With autograyscale => ' + message);
+      })
+      nstClient.subscribe('tesseractText', (message) => {
+        console.log(message);
+        setTesseractText('Without autograyscale => ' + message);
+      })
+      nstClient.subscribe('processedTesseractText', (message) => {
+        console.log(message);
+        setProcessedTesseractText('With autograyscale => ' + message);
       })
     })
-    nstClient.init()
-  }, [])
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img id="image" src={imageSrc ? imageSrc : 'https://nstrumenta.gallerycdn.vsassets.io/extensions/nstrumenta/nstrumenta-vscode/1.0.3/1633666110849/Microsoft.VisualStudio.Services.Icons.Default'} className="App-logo" alt="logo" />
-        <img id="image" src={jimpSrc ? jimpSrc : 'https://nstrumenta.gallerycdn.vsassets.io/extensions/nstrumenta/nstrumenta-vscode/1.0.3/1633666110849/Microsoft.VisualStudio.Services.Icons.Default'} className="App-logo" alt="logo" />
-        <p>
-          {imageText}
-        </p>
-        <p>
-          {processedImageText}
-        </p>
-      </header>
-    </div>
-  );
-}
+      nstClient.init()
+    }, [])
+
+    return (
+      <div className="App">
+        <header className="App-header">
+          <table>
+            <thead>
+              <tr>
+                <th colSpan={2}>Tesseract OCR</th>
+                <th colSpan={2}>Vision OCR</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th colSpan={2}> <img id="image" src={imageSrc ? imageSrc : 'https://nstrumenta.gallerycdn.vsassets.io/extensions/nstrumenta/nstrumenta-vscode/1.0.3/1633666110849/Microsoft.VisualStudio.Services.Icons.Default'} className="App-logo" alt="logo" /> </th>
+                <th colSpan={2}> <img id="image" src={processedImageSrc ? processedImageSrc : 'https://nstrumenta.gallerycdn.vsassets.io/extensions/nstrumenta/nstrumenta-vscode/1.0.3/1633666110849/Microsoft.VisualStudio.Services.Icons.Default'} className="App-logo" alt="logo" /> </th>
+               </tr>
+              <tr>
+                <td>{tesseractText ? tesseractText : 'Please send an image from the Tesseract OCR app to see the text output'}</td>
+                <td>{processedTesseractText ? processedTesseractText : 'Waiting for an image'}</td>
+                <td>{visionText ? visionText : 'Please send an image from the Vision OCR app to see the text output'}</td>
+                <td>{processedVisionText ? processedVisionText : 'Waiting for an image'}</td>
+              </tr>
+            </tbody>
+          </table>
+        </header>
+      </div>
+    );
+  }
 
 export default App;
