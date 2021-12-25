@@ -25,10 +25,6 @@ fs.watch('./images', async (eventType, filename) => {
 
     nstClient.sendBuffer('preprocessing', buff);
 
-    const image = await jimp.read(buff);
-    const outImage = await image.invert().getBufferAsync(jimp.MIME_PNG);
-    nstClient.sendBuffer('postprocessing', outImage);
-
   } else {
     console.log('filename not provided');
   }
