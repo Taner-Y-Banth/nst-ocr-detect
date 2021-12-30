@@ -13,7 +13,8 @@ const App = () => {
   const capture = React.useCallback(() => {
     const imageSrc = webcamRef.current?.getScreenshot();
     setImgSrc(imageSrc);
-    nstClientRef.current?.send('preprocessing', imageSrc)
+    const data = imageSrc.split(',')[1];
+    nstClientRef.current?.sendBuffer('preprocessing', Uint8Array.from(atob(data), (c) => c.charCodeAt(0)))
   }, [webcamRef, setImgSrc]);
 
   React.useEffect(() => {

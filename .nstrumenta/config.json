@@ -7,6 +7,12 @@
       "entry": "index.html"
     },
     {
+      "type": "sandbox",
+      "name": "camera-sender",
+      "folder": "camera-sender/build",
+      "entry": "index.html"
+    },
+    {
       "type": "nodejs",
       "name": "file-sender",
       "folder": "file-sender",
