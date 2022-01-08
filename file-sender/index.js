@@ -1,6 +1,5 @@
 import fs from 'fs';
 import { readFile } from 'fs/promises';
-import jimp from 'jimp';
 import minimist from 'minimist';
 import { NstrumentaClient } from 'nstrumenta';
 import ws from 'ws';

@@ -2,12 +2,23 @@
 ## **Description**
 Real time service for two different Optical Character Recognition(OCR) libraries/APIs connected through nstrumenta. 
 ### **`File Sender`**
-A node app which watches a file,using fs.watch, that then sends a processed image using jimp, a javascript image manipulation program, and the unproccessed images on two channels, 'postprocessing' and 'preprocessing'. 
+A node app which watches a file, using fs.watch, that then sends an unprocessed image on the channel 'preprocessing'. 
 ```shell
 file-watch-nstsend/file-sender$ node index --wsUrl=wss://hostname.vm.nstrumenta.com
 nstClient init
 client websocket opened <wss://hostname.vm.nstrumenta.com/>
 websocket successfully opened
+```
+### **`Camera Sender`**
+A react app that sends an image on the 'preprocessing' channel by using the webcam of a given device and taking a photo at an interval, defined by user input, or when a button is pressed. For setup see [README.md](camera-sender/README.md).
+### **`Image Manipulation`**
+A node app that uses the javascript image manipulation program, or jimp, and subscribes to 'preprocessing' channel and sends a grayscale image on 'postprocessing'.
+```shell
+/file-watch-nstsend/image-manipulation/$ node index --wsUrl=<wss://hostname.vm.nstrumenta.com/>
+nstrumenta init
+client websocket opened <wss://hostname.vm.nstrumenta.com/>
+websocket opened successfully
+Nstrumenta client subscribe <preprocessing>
 ```
 ### **`Tesseract OCR`**
 A node app that uses [tesseract.js](https://github.com/naptha/tesseract.js) to recognize text from an image when an image is sent to either the 'preprocessing' or 'postprocessing' channels, it then sends the text to the 'processedTesseractText' channel and the 'tesseractText' channel, where it may then be used to display on the Image Sandbox app.
