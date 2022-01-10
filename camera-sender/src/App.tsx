@@ -3,10 +3,13 @@ import ReactDOM from "react-dom";
 import Webcam from "react-webcam";
 import './App.css';
 import { NstrumentaClient } from 'nstrumenta';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 const App = () => {
 
   const [qty, setQty] = React.useState(null);
+  const [number, setNumber] = React.useState(null);
   const webcamRef = React.useRef(null);
   const [imgSrc, setImgSrc] = React.useState(null);
   const nstClientRef = React.useRef<NstrumentaClient>(null);
@@ -21,7 +24,7 @@ const App = () => {
   React.useEffect(() => {
     if (qty && !isNaN(qty)) {
       const interval = setInterval(() => {
-      capture();
+        capture();
       }, (qty * 1000));
       return () => clearInterval(interval);
     }
@@ -42,27 +45,33 @@ const App = () => {
     nstClientRef.current.init()
   }, [])
 
-
   return (
-    <>
+    <><Stack spacing={2} direction='row'>
       <Webcam
         audio={false}
         ref={webcamRef}
         screenshotFormat="image/png"
       />
 
-      <div>
-        <legend>Add Interval</legend>
-        <input placeholder="Time in Seconds" onBlur={(e) => { setQty(Number.parseFloat(e.target.value)) }} />
-      </div>
-
-      <button onClick={capture}>Capture photo</button>
       {imgSrc && (
         <img
           src={imgSrc}
         />
       )}
-    </>
+    </Stack>
+
+    <Stack spacing={2}>
+      <p></p>
+    </Stack>
+
+    <Stack spacing={2} direction='row'>
+
+      <Button variant='contained' onClick={capture}>Capture photo</Button>
+      <input placeholder="Time in Seconds" onBlur={(e) => { setQty(Number.parseFloat(e.target.value)) }} />
+
+     </Stack>
+  </>
+
   );
 };
 
