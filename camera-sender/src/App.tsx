@@ -5,11 +5,11 @@ import './App.css';
 import { NstrumentaClient } from 'nstrumenta';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import Grid from "@mui/material/Grid";
 
 const App = () => {
 
   const [qty, setQty] = React.useState(null);
-  const [number, setNumber] = React.useState(null);
   const webcamRef = React.useRef(null);
   const [imgSrc, setImgSrc] = React.useState(null);
   const nstClientRef = React.useRef<NstrumentaClient>(null);
@@ -38,7 +38,6 @@ const App = () => {
 
     nstClientRef.current = new NstrumentaClient({
       apiKey: "",
-      projectId: "",
       wsUrl,
     });
 
@@ -46,32 +45,30 @@ const App = () => {
   }, [])
 
   return (
-    <><Stack spacing={2} direction='row'>
-      <Webcam
-        audio={false}
-        ref={webcamRef}
-        screenshotFormat="image/png"
-      />
 
-      {imgSrc && (
-        <img
-          src={imgSrc}
-        />
-      )}
-    </Stack>
-
-    <Stack spacing={2}>
-      <p></p>
-    </Stack>
-
-    <Stack spacing={2} direction='row'>
-
-      <Button variant='contained' onClick={capture}>Capture photo</Button>
-      <input placeholder="Time in Seconds" onBlur={(e) => { setQty(Number.parseFloat(e.target.value)) }} />
-
-     </Stack>
-  </>
-
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={6}>
+          <Webcam
+            width={'100%'}
+            audio={false}
+            ref={webcamRef}
+            forceScreenshotSourceSize={true}
+            screenshotFormat="image/png"
+          />
+        </Grid>
+        <Grid item xs={12}  md={6}>
+          {imgSrc && (
+            <img
+              src={imgSrc}
+              width={'100%'}
+            />
+          )}
+        </Grid>
+        <Grid item>
+        <Button variant='contained' onClick={capture}>Capture photo</Button>
+        <input placeholder="Time in Seconds" onBlur={(e) => { setQty(Number.parseFloat(e.target.value)) }} />
+        </Grid>
+      </Grid>
   );
 };
 

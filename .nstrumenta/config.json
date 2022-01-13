@@ -1,22 +1,23 @@
 {
-  "modules": [
-    {
-      "type": "sandbox",
-      "name": "ocr-sandbox",
-      "folder": "image-sandbox/build",
-      "entry": "index.html"
-    },
-    {
-      "type": "sandbox",
-      "name": "camera-sender",
-      "folder": "camera-sender/build",
-      "entry": "index.html"
-    },
-    {
-      "type": "nodejs",
-      "name": "file-sender",
-      "folder": "file-sender",
-      "entry": "index.js"
-    }
-  ]
+    "modules": [{
+            "type": "sandbox",
+            "name": "ocr-sandbox",
+            "folder": "image-sandbox/build",
+            "entry": "index.html",
+            "version": "1.0.0"
+        },
+        {
+            "type": "sandbox",
+            "name": "camera-sender",
+            "folder": "camera-sender/build",
+            "entry": "index.html",
+            "version": "1.0.0"
+        },
+        {
+            "type": "nodejs",
+            "name": "file-sender",
+            "folder": "file-sender",
+            "version": "1.0.1"
+        }
+    ]
 }
