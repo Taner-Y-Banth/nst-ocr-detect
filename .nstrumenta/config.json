@@ -16,8 +16,22 @@
         {
             "type": "nodejs",
             "name": "file-sender",
-            "folder": "file-sender",
-            "version": "1.0.1"
+            "folder": "file-sender"
+        },
+        {
+            "type": "nodejs",
+            "name": "image-manipulation",
+            "folder": "image-manipulation"
+        },
+        {
+            "type": "nodejs",
+            "name": "tesseract-ocr",
+            "folder": "tesseract-ocr"
+        },
+        {
+            "type": "nodejs",
+            "name": "vision-ocr",
+            "folder": "vision-ocr"
         }
     ]
 }

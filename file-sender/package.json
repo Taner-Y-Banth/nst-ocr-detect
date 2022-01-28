@@ -1,14 +1,14 @@
 {
-  "type": "module",
-  "dependencies": {
-    "jimp": "^0.16.1",
-    "minimist": "^1.2.5",
-    "nstrumenta": "^1.0.39"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.15"
-  },
-  "scripts": {
-    "start": "node index.js"
-  }
+    "type": "module",
+    "dependencies": {
+        "jimp": "^0.16.1",
+        "minimist": "^1.2.5",
+        "nstrumenta": "^1.0.39"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.15"
+    },
+    "scripts": {
+        "start": "node index.js --wsUrl=wss://ocr-fftmmfhkqlkuxojrfw6w.vm.nstrumenta.com"
+    }
 }

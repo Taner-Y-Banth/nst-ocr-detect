@@ -1,0 +1,9 @@
+{
+    "type": "nodejs",
+    "name": "camera-sender",
+    "version": "1.0.0",
+    "excludes": [
+        "node_modules/",
+        "build/"
+    ]
+}
