@@ -35,7 +35,8 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
-build/
+image-sandbox/build/
+camera-sender/build/
 
 # TypeScript v1 declaration files
 typings/

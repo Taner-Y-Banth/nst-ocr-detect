@@ -67,7 +67,8 @@ const App = () => {
         <Grid item>
         <Button variant='contained' onClick={capture}>Capture photo</Button>
         <input placeholder="Time in Seconds" onBlur={(e) => { setQty(Number.parseFloat(e.target.value)) }} />
-        </Grid>
+        <Button variant="contained" component="span"> Upload </Button>
+        </Grid> 
       </Grid>
   );
 };
