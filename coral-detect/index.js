@@ -19,7 +19,7 @@ nstClient.addListener("open", () => {
 
         await fsPromises.writeFile('infileone.png', buff);
 
-        Jimp.read("infileone.png", function(err, image) {
+        Jimp.read("infileone.png", async(err, image) => {
 
             if (err) {
                 throw new Error(err);
