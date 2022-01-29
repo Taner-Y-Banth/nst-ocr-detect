@@ -19,9 +19,13 @@ nstClient.addListener("open", () => {
 
         await fsPromises.writeFile('infileone.png', buff);
 
-        Jimp.read("infileone.png", async function(image) {
+        Jimp.read("infileone.png", function(err, image) {
 
-            await image.write("infile.jpg");
+            if (err) {
+                throw new Error(err);
+            }
+
+            image.write("infile.jpg");
             await $ `python3 detect_image.py -m ./test_data/ssd_mobilenet_v2_coco_quant_postprocess_edgetpu.tflite -l ./test_data/coco_labels.txt -i infile.png -o ../file-sender/images/processed.png`
 
         });
