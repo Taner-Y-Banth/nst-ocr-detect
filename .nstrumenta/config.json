@@ -1,17 +1,20 @@
 {
     "modules": [{
             "type": "sandbox",
-            "name": "ocr-sandbox",
-            "folder": "image-sandbox/build",
-            "entry": "index.html",
-            "version": "1.0.0"
-        },
-        {
-            "type": "sandbox",
             "name": "camera-sender",
             "folder": "camera-sender/build",
             "entry": "index.html",
             "version": "1.0.0"
+        },
+        {
+            "type": "nodejs",
+            "name": "camera-sender-js",
+            "folder": "camera-sender"
+        },
+        {
+            "type": "nodejs",
+            "name": "coral-dectect",
+            "folder": "coral-detect"
         },
         {
             "type": "nodejs",
