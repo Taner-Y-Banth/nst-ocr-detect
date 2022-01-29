@@ -1,6 +1,9 @@
 {
+  "type": "module",
   "dependencies": {
     "minimist": "^1.2.5",
+    "nstrumenta": "^1.0.50",
+    "ws": "^8.4.2",
     "zx": "^4.3.0"
   }
 }
