@@ -7,12 +7,21 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Grid from "@mui/material/Grid";
 
+
+const FACING_MODE_USER = "user";
+const FACING_MODE_ENVIRONMENT = "environment";
+
+const videoConstraints = {
+  facingMode: FACING_MODE_USER
+};
+
 const App = () => {
 
   const [qty, setQty] = React.useState(null);
   const webcamRef = React.useRef(null);
   const [imgSrc, setImgSrc] = React.useState(null);
   const nstClientRef = React.useRef<NstrumentaClient>(null);
+  const [facingMode, setFacingMode] = React.useState(FACING_MODE_USER);
 
   const capture = React.useCallback(() => {
     const imageSrc = webcamRef.current?.getScreenshot();
@@ -20,6 +29,7 @@ const App = () => {
     const data = imageSrc.split(',')[1];
     nstClientRef.current?.sendBuffer('preprocessing', Uint8Array.from(atob(data), (c) => c.charCodeAt(0)))
   }, [webcamRef, setImgSrc]);
+
 
   React.useEffect(() => {
     if (qty && !isNaN(qty)) {
@@ -29,6 +39,15 @@ const App = () => {
       return () => clearInterval(interval);
     }
   }, [qty]);
+
+  const handleClick = React.useCallback(() => {
+    setFacingMode(
+      prevState =>
+        prevState === FACING_MODE_USER
+          ? FACING_MODE_ENVIRONMENT
+          : FACING_MODE_USER
+    );
+  }, []);
 
   React.useEffect(() => {
 
@@ -54,6 +73,8 @@ const App = () => {
             ref={webcamRef}
             forceScreenshotSourceSize={true}
             screenshotFormat="image/png"
+            videoConstraints={{...videoConstraints, facingMode
+            }}
           />
         </Grid>
         <Grid item xs={12}  md={6}>
@@ -64,10 +85,10 @@ const App = () => {
             />
           )}
         </Grid>
-        <Grid item>
+        <Grid item md={6}>
         <Button variant='contained' onClick={capture}>Capture photo</Button>
+        <Button variant="contained" onClick={handleClick}> Switch View</Button>
         <input placeholder="Time in Seconds" onBlur={(e) => { setQty(Number.parseFloat(e.target.value)) }} />
-        <Button variant="contained" component="span"> Upload </Button>
         </Grid> 
       </Grid>
   );
