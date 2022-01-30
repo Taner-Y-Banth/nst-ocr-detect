@@ -71,7 +71,7 @@ const App = () => {
             width={'100%'}
             audio={false}
             ref={webcamRef}
-            forceScreenshotSourceSize={true}
+            forceScreenshotSourceSize={false}
             screenshotFormat="image/png"
             videoConstraints={{...videoConstraints, facingMode
             }}
@@ -89,6 +89,7 @@ const App = () => {
         <Button variant='contained' onClick={capture}>Capture photo</Button>
         <Button variant="contained" onClick={handleClick}> Switch View</Button>
         <input placeholder="Time in Seconds" onBlur={(e) => { setQty(Number.parseFloat(e.target.value)) }} />
+
         </Grid> 
       </Grid>
   );
