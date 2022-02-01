@@ -1,22 +1,21 @@
-body {
-    margin: 0;
-    font-family: 'Roboto';
-    background-color: #294e66;
-}
-
-input {
-    background-color: rgb(34, 74, 139);
-    text-align: center;
-    border: rgb(255, 255, 255);
-    border-width: 2px;
-    border-style: inset;
-    border-radius: 6px;
-}
-
-input::placeholder {
-    color: rgb(255, 255, 255);
-}
-
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
+        body {
+            margin: 0;
+            font-family: 'Roboto';
+            background-color: #0b3d5f;
+        }
+        
+        input {
+            text-align: center;
+            background-color: #1976d2;
+            border-style: none;
+        }
+        
+        input::placeholder {
+            color: white;
+            font-size: medium;
+            font-variant: inherit;
+        }
+        
+        code {
+            font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+        }

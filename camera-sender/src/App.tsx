@@ -4,9 +4,12 @@ import Webcam from "react-webcam";
 import './App.css';
 import { NstrumentaClient } from 'nstrumenta';
 import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
 import Grid from "@mui/material/Grid";
-
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const FACING_MODE_USER = "user";
 const FACING_MODE_ENVIRONMENT = "environment";
@@ -64,7 +67,26 @@ const App = () => {
   }, [])
 
   return (
-
+    <>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+          <MenuIcon></MenuIcon>
+          </IconButton>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Camera Sender
+          </Typography>
+          <Button color='inherit' variant='outlined' onClick={capture}>Capture photo</Button>
+          <Button color='inherit' variant='outlined' onClick={handleClick}> Switch View</Button>
+          <input placeholder="Enter Interval Here" onBlur={(e) => { setQty(Number.parseFloat(e.target.value)) }} />
+        </Toolbar>
+      </AppBar>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <Webcam
@@ -73,11 +95,12 @@ const App = () => {
             ref={webcamRef}
             forceScreenshotSourceSize={false}
             screenshotFormat="image/png"
-            videoConstraints={{...videoConstraints, facingMode
+            videoConstraints={{
+              ...videoConstraints, facingMode
             }}
           />
         </Grid>
-        <Grid item xs={12}  md={6}>
+        <Grid item xs={12} md={6}>
           {imgSrc && (
             <img
               src={imgSrc}
@@ -85,13 +108,8 @@ const App = () => {
             />
           )}
         </Grid>
-        <Grid item md={6}>
-        <Button variant='contained' onClick={capture}>Capture photo</Button>
-        <Button variant="contained" onClick={handleClick}> Switch View</Button>
-        <input placeholder="Time in Seconds" onBlur={(e) => { setQty(Number.parseFloat(e.target.value)) }} />
-
-        </Grid> 
       </Grid>
+    </>
   );
 };
 
