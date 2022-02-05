@@ -67,7 +67,7 @@ function Viewer() {
       <header className="App-header">
         <table>
           <thead>
-            <tr> <th colSpan={4}> OCR Nstrumenta App </th> </tr>
+            <tr> <th colSpan={4} text-align='center'> Data Viewer </th> </tr>
           </thead>
           <tbody>
             <tr>
@@ -75,14 +75,13 @@ function Viewer() {
               <th colSpan={2}> <img id="image" src={processedImageSrc ? processedImageSrc : 'https://nstrumenta.gallerycdn.vsassets.io/extensions/nstrumenta/nstrumenta-vscode/1.0.3/1633666110849/Microsoft.VisualStudio.Services.Icons.Default'} className="App-logo" alt="logo" /> </th>
             </tr>
             <tr>
-              <th colSpan={2}>Tesseract OCR</th>
+              <th colSpan={2}>Unprocessed</th>
               <th colSpan={2}>Processed</th>
             </tr>
             <tr>
-              <td>{tesseractText ? tesseractText : 'Please send an image from the Tesseract OCR app to see the text output'}</td>
-              <td>{processedTesseractText ? processedTesseractText : 'Waiting for an image'}</td>
-              <td>{visionText ? visionText : 'Please send an image from the Vision OCR app to see the text output'}</td>
-              <td>{processedVisionText ? processedVisionText : 'Waiting for an image'}</td>
+              <td>{tesseractText ? tesseractText : ''}</td>
+              <td>{processedTesseractText ? processedTesseractText : ''}</td>
+              <td>{visionText ? visionText : 'The json output of the image will apear here'}</td>
             </tr>
           </tbody>
         </table>

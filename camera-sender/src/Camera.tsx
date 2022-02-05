@@ -1,4 +1,3 @@
-import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Grid from "@mui/material/Grid";
@@ -85,7 +84,7 @@ const Camera = () => {
           <input placeholder="Enter Interval Here" onBlur={(e) => { setQty(Number.parseFloat(e.target.value)) }} />
         </Toolbar>
       </AppBar>
-      <Grid container spacing={2}>
+      <Grid container>
         <Grid item xs={12} md={6}>
           <Webcam
             width={'100%'}

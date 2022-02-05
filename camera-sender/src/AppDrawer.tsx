@@ -11,9 +11,9 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import { styled, useTheme } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import { Button, Typography } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -93,7 +93,7 @@ export default function AppDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Persisteniltaal Dtaaror of Iceland
+            Detector and Sender
           </Typography>
         </Toolbar>
       </AppBar>
@@ -111,25 +111,35 @@ export default function AppDrawer() {
         open={open}
       >
         <DrawerHeader>
+            <Button>
+              Home
+            </Button>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
+
         </DrawerHeader>
         <Divider />
         <List>
           <ListItem>
             <NavLink
               to="viewer"
+              style={{ textDecoration: "none" }}
             >
-              viewer
+              <Button variant='contained' >
+                Data Viewer
+              </Button>
             </NavLink>
           </ListItem>
 
           <ListItem>
             <NavLink
               to="camera"
+              style={{ textDecoration: "none" }}
             >
-              camera
+              <Button variant='contained' >
+                Camera Sender
+              </Button>
             </NavLink>
           </ListItem>
 

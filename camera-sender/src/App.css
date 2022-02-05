@@ -1,3 +1,20 @@
-build {
-    text-align: center;
+html {
+    text-align: left;
+    background-color: rgb(19, 68, 110);
+}
+
+.css-1fyyp8j-MuiGrid-root {
+    background-color: rgb(19, 68, 110);
+}
+
+.css-1f2xuhi-MuiDrawer-docked .MuiDrawer-paper {
+    background-color: rgb(17, 40, 59);
+}
+
+table {
+    background-color: rgb(19, 68, 110);
+}
+
+.css-i4bv87-MuiSvgIcon-root {
+    color: rgb(246, 246, 246);
 }
