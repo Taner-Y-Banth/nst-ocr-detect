@@ -1,17 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import AppDrawer from './AppDrawer';
+import Camera from './Camera';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Viewer from './Viewer';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<AppDrawer />}>
+          <Route path="camera" element={<Camera />} />
+          <Route path="viewer" element={<Viewer />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

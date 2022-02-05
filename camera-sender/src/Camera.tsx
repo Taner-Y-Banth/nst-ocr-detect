@@ -1,15 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import Webcam from "react-webcam";
-import './App.css';
-import { NstrumentaClient } from 'nstrumenta';
+import MenuIcon from '@mui/icons-material/Menu';
+import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Grid from "@mui/material/Grid";
-import AppBar from '@mui/material/AppBar';
+import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import { NstrumentaClient } from 'nstrumenta';
+import React from "react";
+import Webcam from "react-webcam";
+import './App.css';
 
 const FACING_MODE_USER = "user";
 const FACING_MODE_ENVIRONMENT = "environment";
@@ -18,7 +17,7 @@ const videoConstraints = {
   facingMode: FACING_MODE_USER
 };
 
-const App = () => {
+const Camera = () => {
 
   const [qty, setQty] = React.useState(null);
   const webcamRef = React.useRef(null);
@@ -77,7 +76,6 @@ const App = () => {
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-          <MenuIcon></MenuIcon>
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Camera Sender
@@ -113,6 +111,4 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById("root"));
-
-export default App;
+export default Camera;
