@@ -3,7 +3,7 @@
   "dependencies": {
     "jimp": "^0.16.1",
     "minimist": "^1.2.5",
-    "nstrumenta": "^1.0.50",
+    "nstrumenta": "^1.0.52",
     "ws": "^8.4.2",
     "zx": "^4.3.0"
   }

@@ -5,10 +5,10 @@ import ws from 'ws';
 
 const argv = minimist(process.argv.slice(2));
 const wsUrl = argv.wsUrl;
+const apiKey = argv.apiKey;
 
 const nstClient = new NstrumentaClient({
-  apiKey: "",
-  projectId: "",
+  apiKey,
   wsUrl,
 });
 

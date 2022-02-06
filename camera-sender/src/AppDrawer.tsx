@@ -111,9 +111,11 @@ export default function AppDrawer() {
         open={open}
       >
         <DrawerHeader>
+          <NavLink to='/'>
             <Button>
               Home
             </Button>
+          </NavLink>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
@@ -147,6 +149,7 @@ export default function AppDrawer() {
         <Divider />
 
       </Drawer>
+
       <Main open={open}>
         <DrawerHeader />
         <Outlet />

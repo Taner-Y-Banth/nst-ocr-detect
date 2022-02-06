@@ -1,9 +1,9 @@
-import { $ } from 'zx'
-import minimist from 'minimist';
 import fsPromises from 'fs/promises';
-import ws from 'ws';
-import { NstrumentaClient } from 'nstrumenta';
 import Jimp from 'jimp';
+import minimist from 'minimist';
+import { NstrumentaClient } from 'nstrumenta';
+import ws from 'ws';
+import { $ } from 'zx';
 
 const argv = minimist(process.argv.slice(2));
 const wsUrl = argv.wsUrl;
