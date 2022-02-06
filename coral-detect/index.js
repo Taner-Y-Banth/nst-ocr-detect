@@ -26,7 +26,7 @@ nstClient.addListener("open", () => {
             }
 
             image.write("infile.png");
-            await $ `python3 detect_image.py -m ./test_data/ssd_mobilenet_v2_coco_quant_postprocess_edgetpu.tflite -l ./test_data/coco_labels.txt -i infile.png -o /user/mendel/images/processed.png`
+            await $ `python3 detect_image.py -m ./test_data/ssd_mobilenet_v2_coco_quant_postprocess_edgetpu.tflite -l ./test_data/coco_labels.txt -i infile.png -o /home/mendel/images/processed.png`
 
         });
     });

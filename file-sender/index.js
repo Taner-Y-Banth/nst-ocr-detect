@@ -20,7 +20,7 @@ fs.watch('./images', async (eventType, filename) => {
   if (eventType == 'change' && !completed.includes(filename)) {
     completed.push(filename);
     console.log(`filename provided: ${filename}`);
-    const buff = await readFile(`./images/${filename}`);
+    const buff = await readFile(`/home/medel/images/${filename}`);
 
     nstClient.sendBuffer('preprocessing', buff);
 
