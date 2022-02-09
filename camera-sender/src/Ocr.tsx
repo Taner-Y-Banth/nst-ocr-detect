@@ -19,7 +19,6 @@ function Ocr() {
 
     const nstClient = new NstrumentaClient({
       apiKey: "",
-      projectId: "",
       wsUrl,
     });
 
