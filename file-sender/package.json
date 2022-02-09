@@ -9,6 +9,6 @@
         "nodemon": "^2.0.15"
     },
     "scripts": {
-        "start": "node index.js --wsUrl=wss://ocr-fftmmfhkqlkuxojrfw6w.vm.nstrumenta.com"
+        "start": "node index.js --wsUrl=wss://ocr-zw6isqwrm6ff60aeuzbi.vm.nstrumenta.com"
     }
 }

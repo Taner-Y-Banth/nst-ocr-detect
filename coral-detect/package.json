@@ -6,5 +6,8 @@
     "nstrumenta": "^1.0.52",
     "ws": "^8.4.2",
     "zx": "^4.3.0"
+  },
+  "scripts": {
+    "start": "node index.js --wsUrl=wss://ocr-zw6isqwrm6ff60aeuzbi.vm.nstrumenta.com"
   }
 }
