@@ -13,17 +13,14 @@ function Viewer() {
   useEffect(() => {
 
     const wsUrlParam = new URLSearchParams(window.location.search).get("wsUrl");
-
     const wsUrl = wsUrlParam ? wsUrlParam : window.location.origin.replace('http', 'ws');
+    const apiKey = new URLSearchParams(window.location.search).get("apiKey");
 
-    const nstClient = new NstrumentaClient({
-      apiKey: "",
-      wsUrl,
-    });
+    const nstClient = new NstrumentaClient(apiKey);
 
     nstClient.addListener("open", () => {
       console.log('nst client open')
-      nstClient.subscribe('preprocessing', (message) => {
+      nstClient.addSubscription('preprocessing', (message) => {
         setImageSrc('');
         setProcessedImageSrc('');
         const blob = new Blob([message], { type: 'image/png' });
@@ -35,31 +32,31 @@ function Viewer() {
         setProcessedTesseractText('');
         setTesseractText('');
       })
-      nstClient.subscribe('postprocessing', (grayscale) => {
+      nstClient.addSubscription('postprocessing', (grayscale) => {
         const blob = new Blob([grayscale], { type: 'image/png' });
         const src1 = URL.createObjectURL(blob);
         console.log(src1);
         setProcessedImageSrc(src1);
       })
-      nstClient.subscribe('visionText', (message) => {
+      nstClient.addSubscription('visionText', (message) => {
         console.log(message);
         setVisionText('Without autograyscale => ' + message);
       })
-      nstClient.subscribe('processedVisionText', (message) => {
+      nstClient.addSubscription('processedVisionText', (message) => {
         console.log(message);
         setProcessedVisionText('With autograyscale => ' + message);
       })
-      nstClient.subscribe('tesseractText', (message) => {
+      nstClient.addSubscription('tesseractText', (message) => {
         console.log(message);
         setTesseractText('Without autograyscale => ' + message);
       })
-      nstClient.subscribe('processedTesseractText', (message) => {
+      nstClient.addSubscription('processedTesseractText', (message) => {
         console.log(message);
         setProcessedTesseractText('With autograyscale => ' + message);
       })
     })
 
-    nstClient.init()
+    nstClient.connect({wsUrl})
   }, [])
 
   return (

@@ -53,15 +53,12 @@ const Camera = () => {
   React.useEffect(() => {
 
     const wsUrlParam = new URLSearchParams(window.location.search).get("wsUrl");
-
     const wsUrl = wsUrlParam ? wsUrlParam : window.location.origin.replace('http', 'ws');
+    const apiKey = new URLSearchParams(window.location.search).get("apiKey");
 
-    nstClientRef.current = new NstrumentaClient({
-      apiKey: "",
-      wsUrl,
-    });
+    nstClientRef.current = new NstrumentaClient(apiKey);
 
-    nstClientRef.current.init()
+    nstClientRef.current.connect({ wsUrl })
   }, [])
 
   return (
