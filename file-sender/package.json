@@ -3,7 +3,7 @@
     "dependencies": {
         "jimp": "^0.16.1",
         "minimist": "^1.2.5",
-        "nstrumenta": "^1.0.52"
+        "nstrumenta": "^2.0.4"
     },
     "devDependencies": {
         "nodemon": "^2.0.15"

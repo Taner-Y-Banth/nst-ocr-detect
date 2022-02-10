@@ -5,19 +5,15 @@ import ws from 'ws';
 
 const argv = minimist(process.argv.slice(2));
 const wsUrl = argv.wsUrl;
-const apiKey = argv.apiKey;
 
-const nstClient = new NstrumentaClient({
-  apiKey,
-  wsUrl,
-});
+const nstClient = new NstrumentaClient();
 
 const client = new vision.ImageAnnotatorClient();
 
 nstClient.addListener("open", () => {
   console.log("websocket successfully opened")
 
-  nstClient.subscribe('postprocessing', async (message) => {
+  nstClient.addSubscription('postprocessing', async (message) => {
 
     const [result] = await client.textDetection(message);
     const text = result.textAnnotations[0].description;
@@ -25,7 +21,7 @@ nstClient.addListener("open", () => {
 
   }),
 
-    nstClient.subscribe('preprocessing', async (message) => {
+    nstClient.addSubscription('preprocessing', async (message) => {
 
       const [result] = await client.textDetection(message);
       const text = result.textAnnotations[0].description;
@@ -40,4 +36,4 @@ nstClient.addListener("open", () => {
 
 console.log("nstClient init")
 
-nstClient.init(ws);
+nstClient.connect({ wsUrl, nodeWebSocket: ws });

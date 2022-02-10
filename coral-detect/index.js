@@ -7,11 +7,13 @@ import { $ } from 'zx';
 
 const argv = minimist(process.argv.slice(2));
 const wsUrl = argv.wsUrl;
-const apiKey = argv.apiKey;
 
 const nstClient = new NstrumentaClient(apiKey);
 
 nstClient.addListener("open", () => {
+
+    console.log("websocket opened successfully");
+
     nstClient.addSubscription('preprocessing', async (buff) => {
 
         await fsPromises.writeFile('infileone.png', buff);

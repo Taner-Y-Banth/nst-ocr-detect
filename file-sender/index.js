@@ -6,12 +6,8 @@ import ws from 'ws';
 
 const argv = minimist(process.argv.slice(2));
 const wsUrl = argv.wsUrl;
-const apiKey = argv.apiKey;
 
-const nstClient = new NstrumentaClient({
-  apiKey,
-  wsUrl,
-});
+const nstClient = new NstrumentaClient();
 
 const completed = [];
 
@@ -33,6 +29,6 @@ nstClient.addListener("open", () => {
   console.log("websocket opened successfully");
 });
 
-console.log("nstrumenta init");
+console.log("nstrumenta connect");
 
-nstClient.init(ws);
+nstClient.connect({ wsUrl, nodeWebSocket: ws });

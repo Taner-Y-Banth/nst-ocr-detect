@@ -5,22 +5,18 @@ import ws from 'ws';
 
 const argv = minimist(process.argv.slice(2));
 const wsUrl = argv.wsUrl;
-const apiKey = argv.apiKey;
 
-const nstClient = new NstrumentaClient({
-    apiKey,
-    wsUrl,
-});
+const nstClient = new NstrumentaClient();
 
 nstClient.addListener("open", () => {
     console.log("websocket opened successfully")
-    nstClient.subscribe('preprocessing', async (buff) => {
+    nstClient.addSubscription('preprocessing', async (buff) => {
         const image = await jimp.read(buff);
         const outImage = await image.invert().getBufferAsync(jimp.MIME_PNG);
         nstClient.sendBuffer('postprocessing', outImage);
     });
 });
 
-console.log("nstrumenta init");
+console.log("nstrumenta connect");
 
-nstClient.init(ws);
+nstClient.connect({ wsUrl, nodeWebSocket: ws });

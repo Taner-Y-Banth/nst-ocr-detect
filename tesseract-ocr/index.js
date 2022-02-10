@@ -6,17 +6,13 @@ import ws from 'ws';
 
 const argv = minimist(process.argv.slice(2));
 const wsUrl = argv.wsUrl;
-const apiKey = argv.apiKey;
 
-const nstClient = new NstrumentaClient({
-  apiKey,
-  wsUrl,
-});
+const nstClient = new NstrumentaClient();
 
 nstClient.addListener("open", () => {
   console.log("websocket successfully opened")
 
-  nstClient.subscribe('postprocessing', async (message) => {
+  nstClient.addSubscription('postprocessing', async (message) => {
 
     const worker = createWorker({
       logger: m => console.log(m)
@@ -32,7 +28,7 @@ nstClient.addListener("open", () => {
     fs.rm('./eng.traineddata', () => { });
   }),
 
-    nstClient.subscribe('preprocessing', async (message) => {
+    nstClient.addSubscription('preprocessing', async (message) => {
 
       const worker = createWorker({
         logger: m => console.log(m)
@@ -50,11 +46,11 @@ nstClient.addListener("open", () => {
 
   nstClient.addListener("open", () => {
     console.log("websocket successfully opened")
-    nstClient.subscribe('ocr', () => {
+    nstClient.addSubscription('ocr', () => {
     })
   });
 })
 
 console.log("nstClient init")
 
-nstClient.init(ws);
+nstClient.connect({ wsUrl, nodeWebSocket: ws });
