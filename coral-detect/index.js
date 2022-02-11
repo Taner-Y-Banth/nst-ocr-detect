@@ -8,7 +8,7 @@ import { $ } from 'zx';
 const argv = minimist(process.argv.slice(2));
 const wsUrl = argv.wsUrl;
 
-const nstClient = new NstrumentaClient(apiKey);
+const nstClient = new NstrumentaClient();
 
 nstClient.addListener("open", () => {
 
