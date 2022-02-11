@@ -6,7 +6,7 @@ These projects are all strung together through nstrumenta and can be utilized us
 ```shell
 /nst-ocr-detect/$ nst module publish
 ```
-The publish command will upload all modules declared in the config.json folder within the .nstrumenta folder and contain a module.json file within their respective folders.
+The publish command will upload all modules declared in the config JSON file within the .nstrumenta folder and contain a module.json file within their respective folders.
 ```shell
 /nst-ocr-detect/$ nst module run
 ```
