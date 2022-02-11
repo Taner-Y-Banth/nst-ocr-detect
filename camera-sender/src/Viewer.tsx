@@ -16,7 +16,7 @@ function Viewer() {
     const wsUrl = wsUrlParam ? wsUrlParam : window.location.origin.replace('http', 'ws');
     const apiKey = new URLSearchParams(window.location.search).get("apiKey");
 
-    const nstClient = new NstrumentaClient(apiKey);
+    const nstClient = new NstrumentaClient();
 
     nstClient.addListener("open", () => {
       console.log('nst client open')
@@ -56,7 +56,7 @@ function Viewer() {
       })
     })
 
-    nstClient.connect({wsUrl})
+    nstClient.connect({ wsUrl: new URL(wsUrl), apiKey })
   }, [])
 
   return (

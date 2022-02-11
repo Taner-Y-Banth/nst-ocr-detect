@@ -56,9 +56,9 @@ const Camera = () => {
     const wsUrl = wsUrlParam ? wsUrlParam : window.location.origin.replace('http', 'ws');
     const apiKey = new URLSearchParams(window.location.search).get("apiKey");
 
-    nstClientRef.current = new NstrumentaClient(apiKey);
+    nstClientRef.current = new NstrumentaClient();
 
-    nstClientRef.current.connect({ wsUrl })
+    nstClientRef.current.connect({ wsUrl: new URL(wsUrl), apiKey })
   }, [])
 
   return (
