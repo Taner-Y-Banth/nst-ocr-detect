@@ -2,7 +2,18 @@
 ## **Description**
 Real time service for two different Optical Character Recognition(OCR) libraries/APIs connected through nstrumenta, as well as looking at the post and preprocessed images of any system. There is also a module that contains a coral-tpu detection script which is utilized within the camera-sender react app.
 ## **Nstrumenta Module System**
-These projects are all strung together through nstrumenta and can be utilized using nstrumenta modules. To use this system confirm you have completed the quickstart  guide, here:[https://github.com/nstrumenta/nstrumenta](https://github.com/nstrumenta/nstrumenta). 
+These projects are all strung together through nstrumenta and can be utilized using nstrumenta modules. To use this system confirm you have completed the quickstart  guide, here:[https://github.com/nstrumenta/nstrumenta](https://github.com/nstrumenta/nstrumenta).
+```shell
+/nst-ocr-detect/$ nst module publish
+```
+The publish command will upload all modules declared in the config.json folder within the .nstrumenta folder and contain a module.json file within their respective folders.
+```shell
+/nst-ocr-detect/$ nst module run
+```
+The run command lists all published modules and their version, which is declared within the module.json folder. When trying to run a command it will use the start script with the package.json and run that using npm run start. You can also pass through varibles, such as:
+```shell
+/nst-ocr-detect/$ nst module run -- --wsUrl=<wss://hostname.vm.nstrumenta.com>
+```
 ### **`Camera Sender`**
 A react app that sends an image on the 'preprocessing' channel by using the webcam of a given device and taking a photo at an interval, defined by user input, or when a button is pressed. It also contains an app which displays both the unproccesed and processed images by subscribing to two channels, 'postprocessing' and 'preprocessing'. Along with displaying the images it displays the text output by subscribing to the 'processedVisionText' or 'processedTesseractText' channels and the 'visionText' or 'tesseractText' channels. For setup see [README.md](camera-sender/README.md).
 ### **`Coral Detect`**
