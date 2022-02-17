@@ -2,7 +2,7 @@
 ## **Description**
 Real time service for two different Optical Character Recognition(OCR) libraries/APIs connected through nstrumenta, as well as looking at the post and preprocessed images of any system. There is also a module that contains a coral-tpu detection script which is utilized within the camera-sender react app.
 ## **Nstrumenta Module System**
-These projects are all strung together through nstrumenta and can be utilized using nstrumenta modules. To use this system confirm you have completed the quickstart  guide, here:[https://github.com/nstrumenta/nstrumenta](https://github.com/nstrumenta/nstrumenta).
+These projects are all strung together through nstrumenta and can be utilized using nstrumenta modules. To use this system confirm you have completed the quickstart  guide, here: [https://github.com/nstrumenta/nstrumenta](https://github.com/nstrumenta/nstrumenta).
 ```shell
 /nst-ocr-detect/$ nst module publish
 ```
