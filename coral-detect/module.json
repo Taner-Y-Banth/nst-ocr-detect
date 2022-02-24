@@ -2,7 +2,7 @@
     "$schema": "https://raw.githubusercontent.com/nstrumenta/nstrumenta/main/module.schema.json",
     "type": "nodejs",
     "name": "coral-detect",
-    "version": "1.0.14",
+    "version": "1.0.15",
     "excludes": [
         "node_modules/"
     ]
