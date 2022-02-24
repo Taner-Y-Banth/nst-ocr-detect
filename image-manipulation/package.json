@@ -6,6 +6,6 @@
         "nstrumenta": "^2.0.11"
     },
     "scripts": {
-        "start": "node index.js --wsUrl=wss://ocr-fftmmfhkqlkuxojrfw6w.vm.nstrumenta.com"
+        "start": "node index.js"
     }
 }
