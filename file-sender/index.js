@@ -9,7 +9,7 @@ const wsUrl = argv.wsUrl;
 
 const nstClient = new NstrumentaClient();
 
-fs.watch('home/mendel/images', async (eventType, filename) => {
+fs.watch('/home/mendel/images', async (eventType, filename) => {
   console.log(`event type is: ${eventType}`);
   if (eventType == 'change') {
     console.log(`filename provided: ${filename}`);
