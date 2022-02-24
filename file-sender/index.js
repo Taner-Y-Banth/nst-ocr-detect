@@ -9,16 +9,13 @@ const wsUrl = argv.wsUrl;
 
 const nstClient = new NstrumentaClient();
 
-const completed = [];
-
-fs.watch('./images', async (eventType, filename) => {
-  console.log(!completed.includes(filename) && `event type is: ${eventType}`);
-  if (eventType == 'change' && !completed.includes(filename)) {
-    completed.push(filename);
+fs.watch('~/images', async (eventType, filename) => {
+  console.log(`event type is: ${eventType}`);
+  if (eventType == 'change') {
     console.log(`filename provided: ${filename}`);
     const buff = await readFile(`~/images/${filename}`);
 
-    nstClient.sendBuffer('preprocessing', buff);
+    nstClient.sendBuffer('processed', buff);
 
   } else {
     console.log('filename not provided');
