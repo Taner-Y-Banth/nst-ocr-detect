@@ -40,7 +40,7 @@ function Viewer() {
       })
       nstClient.addSubscription('visionText', (message) => {
         console.log(message);
-        setVisionText('Without autograyscale => ' + message);
+        setVisionText(JSON.stringify(message));
       })
       nstClient.addSubscription('processedVisionText', (message) => {
         console.log(message);
