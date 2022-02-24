@@ -13,7 +13,7 @@ fs.watch('/home/mendel/images', async (eventType, filename) => {
   console.log(`event type is: ${eventType}`);
   if (eventType == 'change') {
     console.log(`filename provided: ${filename}`);
-    const buff = await readFile(`home/mendel/images/${filename}`);
+    const buff = await readFile(`/home/mendel/images/${filename}`);
 
     nstClient.sendBuffer('processed', buff);
 
