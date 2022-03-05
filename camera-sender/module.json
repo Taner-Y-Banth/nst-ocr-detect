@@ -1,9 +1,8 @@
 {
     "type": "nodejs",
     "name": "camera-sender",
-    "version": "1.0.4",
-    "excludes": [
-        "node_modules/",
+    "version": "1.0.6",
+    "includes": [
         "build/"
     ]
 }

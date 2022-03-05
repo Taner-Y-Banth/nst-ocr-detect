@@ -11,18 +11,33 @@ const nstClient = new NstrumentaClient();
 
 const completed = [];
 
-fs.watch('/home/mendel/images', async (eventType, filename) => {
+function delay(delayInms) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(2);
+    }, delayInms);
+  });
+}
+
+let timeoutID = undefined
+
+fs.watch('/home/mendel/images', (eventType, filename) => {
   console.log(`event type is: ${eventType}`, filename, completed);
-    if (eventType == 'change' && !completed.includes(filename)) {
-      
+  if (eventType == 'change' && !completed.includes(filename)) {
+
+    if (timeoutID) {
+      clearTimeout(timeoutID);
+    }
+
+    timeoutID = setTimeout( async () => {
       completed.push(filename);
       console.log(`filename provided: ${filename}`);
       const buff = await readFile(`/home/mendel/images/${filename}`);
-
       nstClient.sendBuffer('postprocessing', buff);
       console.log('nstClient Sent Buffer')
       fs.rmSync(`/home/mendel/images/${filename}`)
-    }
+    }, 100)
+  }
 }),
 
   nstClient.addListener("open", () => {
