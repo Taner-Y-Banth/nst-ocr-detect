@@ -40,7 +40,7 @@ function Viewer() {
       })
       nstClient.addSubscription('visionText', (message) => {
         console.log(message);
-        setVisionText(JSON.stringify(message));
+        setVisionText(message);
       })
       nstClient.addSubscription('processedVisionText', (message) => {
         console.log(message);
@@ -56,7 +56,7 @@ function Viewer() {
       })
     })
 
-    nstClient.connect({ wsUrl: new URL(wsUrl), apiKey })
+    nstClient.connect({ wsUrl, apiKey })
   }, [])
 
   return (

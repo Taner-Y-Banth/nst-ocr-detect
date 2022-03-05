@@ -9,22 +9,25 @@ const wsUrl = argv.wsUrl;
 
 const nstClient = new NstrumentaClient();
 
+const completed = [];
+
 fs.watch('/home/mendel/images', async (eventType, filename) => {
-  console.log(`event type is: ${eventType}`);
-  if (eventType == 'change') {
-    console.log(`filename provided: ${filename}`);
-    const buff = await readFile(`/home/mendel/images/${filename}`);
+  console.log(`event type is: ${eventType}`, filename, completed);
+    if (eventType == 'change' && !completed.includes(filename)) {
+      
+      completed.push(filename);
+      console.log(`filename provided: ${filename}`);
+      const buff = await readFile(`/home/mendel/images/${filename}`);
 
-    nstClient.sendBuffer('postprocessing', buff);
+      nstClient.sendBuffer('postprocessing', buff);
+      console.log('nstClient Sent Buffer')
+      fs.rmSync(`/home/mendel/images/${filename}`)
+    }
+}),
 
-  } else {
-    console.log('filename not provided');
-  }
-});
-
-nstClient.addListener("open", () => {
-  console.log("websocket opened successfully");
-});
+  nstClient.addListener("open", () => {
+    console.log("websocket opened successfully");
+  });
 
 console.log("nstrumenta connect");
 

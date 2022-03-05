@@ -26,7 +26,7 @@ nstClient.addListener("open", () => {
             // setting colorType(2) forces the png to RGB (no alpha)
             // the python reshape fails with RGBA images 
             image.colorType(2).write("infile.png");
-            const {stdout} = await $`python3 detect_image.py -m ./test_data/ssd_mobilenet_v2_coco_quant_postprocess_edgetpu.tflite -l ./test_data/coco_labels.txt -i infile.png -o /home/mendel/images/processed.png`
+            const {stdout} = await $`python3 detect_image.py -m ./test_data/ssd_mobilenet_v2_coco_quant_postprocess_edgetpu.tflite -l ./test_data/coco_labels.txt -i infile.png -o /home/mendel/images/${Date.now()}.png`
             nstClient.send(
                 'visionText',
                 stdout

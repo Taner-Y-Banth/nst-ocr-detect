@@ -57,7 +57,7 @@ function Ocr() {
       })
     })
 
-    nstClient.connect({ wsUrl: new URL(wsUrl), apiKey })
+    nstClient.connect({ wsUrl, apiKey })
   }, [])
 
   return (

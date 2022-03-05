@@ -58,7 +58,7 @@ const Camera = () => {
 
     nstClientRef.current = new NstrumentaClient();
 
-    nstClientRef.current.connect({ wsUrl: new URL(wsUrl), apiKey })
+    nstClientRef.current.connect({ wsUrl, apiKey })
   }, [])
 
   return (
