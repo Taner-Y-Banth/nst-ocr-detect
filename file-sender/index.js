@@ -36,7 +36,7 @@ fs.watch('/home/mendel/images', (eventType, filename) => {
       nstClient.sendBuffer('postprocessing', buff);
       console.log('nstClient Sent Buffer')
       fs.rmSync(`/home/mendel/images/${filename}`)
-    }, 100)
+    }, 400)
   }
 }),
 
