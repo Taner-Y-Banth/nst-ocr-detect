@@ -1,7 +1,7 @@
 {
     "type": "nodejs",
     "name": "file-sender",
-    "version": "1.0.39",
+    "version": "1.0.40",
     "excludes": [
         "node_modules/"
     ]
