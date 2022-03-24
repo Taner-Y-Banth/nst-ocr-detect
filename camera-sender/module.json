@@ -1,7 +1,7 @@
 {
     "type": "nodejs",
     "name": "camera-sender",
-    "version": "1.0.6",
+    "version": "1.0.8",
     "includes": [
         "build/"
     ]

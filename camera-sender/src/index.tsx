@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import AppDrawer from './AppDrawer';
 import Camera from './Camera';
 import Home from './Home';
@@ -10,7 +10,7 @@ import Ocr from './Ocr';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<AppDrawer />}>
           <Route path="" element={<Home />} />
@@ -19,7 +19,7 @@ ReactDOM.render(
           <Route path="ocr" element={<Ocr />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

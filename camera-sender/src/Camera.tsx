@@ -6,6 +6,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { NstrumentaClient } from 'nstrumenta';
 import React from "react";
+import { useLocation } from 'react-router-dom';
 import Webcam from "react-webcam";
 import './App.css';
 
@@ -50,11 +51,13 @@ const Camera = () => {
     );
   }, []);
 
+  const {search} = useLocation();
+
   React.useEffect(() => {
 
-    const wsUrlParam = new URLSearchParams(window.location.search).get("wsUrl");
+    const wsUrlParam = new URLSearchParams(search).get("wsUrl");
     const wsUrl = wsUrlParam ? wsUrlParam : window.location.origin.replace('http', 'ws');
-    const apiKey = new URLSearchParams(window.location.search).get("apiKey");
+    const apiKey = new URLSearchParams(search).get("apiKey");
 
     nstClientRef.current = new NstrumentaClient();
 
