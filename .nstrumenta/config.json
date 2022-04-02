@@ -1,8 +1,8 @@
 {
     "modules": [
         {
-            "type": "nodejs",
-            "name": "camera-sender-js",
+            "type": "sandbox",
+            "name": "camera-sender",
             "folder": "camera-sender"
         },
         {

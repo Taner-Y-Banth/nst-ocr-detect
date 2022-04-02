@@ -1,8 +1,9 @@
 {
-    "type": "nodejs",
+    "$schema": "https://raw.githubusercontent.com/nstrumenta/nstrumenta/main/module.schema.json",
+    "type": "sandbox",
     "name": "camera-sender",
-    "version": "1.0.9",
+    "version": "1.0.15",
     "includes": [
-        "build/"
+        "build"
     ]
 }

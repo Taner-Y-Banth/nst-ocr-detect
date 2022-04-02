@@ -57,7 +57,10 @@ const Camera = () => {
 
     const wsUrlParam = new URLSearchParams(search).get("wsUrl");
     const wsUrl = wsUrlParam ? wsUrlParam : window.location.origin.replace('http', 'ws');
-    const apiKey = new URLSearchParams(search).get("apiKey");
+    const apiKeyParam = new URLSearchParams(search).get("apiKey");
+    if(apiKeyParam){localStorage.setItem('apiKey', apiKeyParam)};
+    const apiLocalStore = localStorage.getItem('apiKey')
+    const apiKey = apiKeyParam ? apiKeyParam : apiLocalStore
 
     nstClientRef.current = new NstrumentaClient();
 

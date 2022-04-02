@@ -7,16 +7,16 @@ function Viewer() {
   const [imageSrc, setImageSrc] = useState<string>()
   const [processedImageSrc, setProcessedImageSrc] = useState<string>()
   const [visionText, setVisionText] = useState<string>()
-  const [processedVisionText, setProcessedVisionText] = useState<string>()
-  const [tesseractText, setTesseractText] = useState<string>()
-  const [processedTesseractText, setProcessedTesseractText] = useState<string>()
   const {search} = useLocation();
 
   useEffect(() => {
 
     const wsUrlParam = new URLSearchParams(search).get("wsUrl");
     const wsUrl = wsUrlParam ? wsUrlParam : window.location.origin.replace('http', 'ws');
-    const apiKey = new URLSearchParams(search).get("apiKey");
+    const apiKeyParam = new URLSearchParams(search).get("apiKey");
+    if(apiKeyParam){localStorage.setItem('apiKey', apiKeyParam)};
+    const apiLocalStore = localStorage.getItem('apiKey')
+    const apiKey = apiKeyParam ? apiKeyParam : apiLocalStore
 
     const nstClient = new NstrumentaClient();
 
@@ -29,10 +29,7 @@ function Viewer() {
         const src = URL.createObjectURL(blob);
         console.log(src);
         setImageSrc(src);
-        setProcessedVisionText('');
         setVisionText('');
-        setProcessedTesseractText('');
-        setTesseractText('');
       })
       nstClient.addSubscription('postprocessing', (grayscale) => {
         const blob = new Blob([grayscale], { type: 'image/png' });
@@ -43,18 +40,6 @@ function Viewer() {
       nstClient.addSubscription('visionText', (message) => {
         console.log(message);
         setVisionText(message);
-      })
-      nstClient.addSubscription('processedVisionText', (message) => {
-        console.log(message);
-        setProcessedVisionText('With autograyscale => ' + message);
-      })
-      nstClient.addSubscription('tesseractText', (message) => {
-        console.log(message);
-        setTesseractText('Without autograyscale => ' + message);
-      })
-      nstClient.addSubscription('processedTesseractText', (message) => {
-        console.log(message);
-        setProcessedTesseractText('With autograyscale => ' + message);
       })
     })
 
@@ -78,8 +63,6 @@ function Viewer() {
               <th colSpan={2}>Processed</th>
             </tr>
             <tr>
-              <td>{tesseractText ? tesseractText : ''}</td>
-              <td>{processedTesseractText ? processedTesseractText : ''}</td>
               <td>{visionText ? visionText : 'The json output of the image will apear here'}</td>
             </tr>
           </tbody>
